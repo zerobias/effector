@@ -24,8 +24,8 @@ module.exports = {
         src: 'img/comet.png',
       },
       items: [
-        {to: 'docs/introduction/installation', label: 'Docs', position: 'left'},
-        {to: 'docs/api/effector/effector', label: 'API', position: 'left'},
+        {to: 'docs/installation', label: 'Docs', position: 'left'},
+        {to: 'docs/api/effector', label: 'API', position: 'left'},
         {to: 'blog', label: 'Blog', position: 'left'},
         {
           href: 'https://share.effector.dev',
@@ -61,7 +61,7 @@ module.exports = {
             },
             {
               label: 'API',
-              to: 'docs/api/effector/effector',
+              to: 'docs/api/effector/',
             },
             {
               label: 'Changelog',

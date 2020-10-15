@@ -14,7 +14,7 @@ module.exports = function Footer({config}) {
         <div>
           <h5>Docs</h5>
           <a href={`${docsPart}introduction/installation`}>Getting Started</a>
-          <a href={`${docsPart}api/effector/effector`}>API Reference</a>
+          <a href={`${docsPart}api/effector`}>API Reference</a>
           <a href="https://changelog.effector.dev">Changelog</a>
         </div>
         <div>

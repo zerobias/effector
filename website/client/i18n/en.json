@@ -89,7 +89,7 @@
       "api/effector/guard": {
         "title": "guard"
       },
-      "api/effector/effector": {
+      "api/effector": {
         "title": "API Reference"
       },
       "api/effector/merge": {

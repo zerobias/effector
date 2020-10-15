@@ -1,8 +1,11 @@
 const sidebar = {
+  Installation: [{
+    type: 'ref',
+    id: 'installation', // Document id (string).
+  }],
   Introduction: [
-    'introduction/installation',
     'introduction/core-concepts',
-    'glossary',
+    'introduction/glossary',
     'introduction/examples',
     'ecosystem',
   ],
@@ -11,7 +14,7 @@ const sidebar = {
       type: 'category',
       label: 'effector',
       items: [
-        'api/effector/effector',
+        'api/effector/index',
         {
           type: 'category',
           label: 'Unit creators',
@@ -33,16 +36,14 @@ const sidebar = {
           ],
         },
         'api/effector/combine',
-        'api/effector/restore',
-        'api/effector/createApi',
+        'api/effector/forward',
         'api/effector/sample',
         'api/effector/guard',
         'api/effector/attach',
-        'api/effector/merge',
         'api/effector/split',
-        'api/effector/forward',
-        'api/effector/is',
-        'api/effector/fromObservable',
+        'api/effector/createApi',
+        'api/effector/restore',
+        'api/effector/merge',
         {
           type: 'category',
           label: 'Fork api',
@@ -54,8 +55,18 @@ const sidebar = {
             'api/effector/allSettled',
             'api/effector/scopeBind',
           ],
+          collapsed: true
         },
         'api/effector/babel-plugin',
+        {
+          type: 'category',
+          label: 'Libs interop',
+          items: [
+            'api/effector/is',
+            'api/effector/fromObservable',
+          ],
+          collapsed: true
+        },
         {
           type: 'category',
           label: 'Low level api',

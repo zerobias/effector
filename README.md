@@ -93,7 +93,7 @@ For additional information, guides and api reference visit [our documentation si
 | [`effector-react`] |    [![npm-react]][pack-react]    |    [![size-react]][pho-react]    |
 |  [`effector-vue`]  |      [![npm-vue]][pack-vue]      |      [![size-vue]][pho-vue]      |
 
-[`effector`]: https://effector.now.sh/docs/api/effector/effector
+[`effector`]: https://effector.now.sh/docs/api/effector
 [`effector-react`]: https://effector.now.sh/docs/api/effector-react/effector-react
 [`effector-vue`]: https://effector.now.sh/docs/api/effector-vue/effector-vue
 [npm-effector]: https://img.shields.io/npm/v/effector.svg?maxAge=3600
@@ -408,7 +408,7 @@ See [`Domain`](http://effector.now.sh/api/effector/domain) in docs
 ### Learn more
 
 - [Core concepts](https://effector.now.sh/en/introduction/core-concepts)
-- [API docs](https://effector.now.sh/en/api/effector/effector)
+- [API docs](https://effector.now.sh/en/api/effector)
 - [Usage with TypeScript](https://effector.now.sh/en/recipes/usage-with-typescript)
 - [Glossary](https://effector.now.sh/en/glossary)
 - [Changelog](https://changelog.effector.dev)

@@ -1,5 +1,6 @@
 ---
 id: effector
+slug: /
 title: API Reference
 ---
 
