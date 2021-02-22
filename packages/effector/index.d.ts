@@ -418,6 +418,45 @@ export function forward<To, From extends To>(opts: {
   to: Unit<To> | ReadonlyArray<Unit<To>>
 }): Subscription
 
+// clock/target
+export function forward<B = any,
+  C extends Clock<B> = Clock<B>,
+  T extends Target = Target
+>(config: {
+  clock: C,
+  target: MultiTarget<T, GetClock<C>>,
+}): Subscription
+
+// clock/target (temporary duplicate overload for readability)
+export function forward<B = any,
+  C extends Clock<B> = Clock<B>,
+  T extends Target = Target
+>(config: {
+  clock: C,
+  target: MultiTarget<T, GetClock<C>>,
+}): Subscription
+
+// from/to
+export function forward<B = any,
+  C extends Clock<B> = Clock<B>,
+  T extends Target = Target
+>(config: {
+  from: C,
+  to: MultiTarget<T, GetClock<C>>,
+}): Subscription
+
+// forward's last overload
+export function forward<B = any,
+  C extends Clock<B> = Clock<B>,
+  T extends Target = Target
+>(config: {
+  from: C,
+  to: MultiTarget<T, GetClock<C>>,
+} | {
+  clock: C,
+  target: MultiTarget<T, GetClock<C>>,
+}): Subscription
+
 export function merge<T>(events: ReadonlyArray<Unit<T>>): EventAsReturnType<T>
 export function merge<T extends ReadonlyArray<Unit<any>>>(
   events: T,

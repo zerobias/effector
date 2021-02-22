@@ -66,9 +66,7 @@ describe('forward with subtyping', () => {
       "
       No overload matches this call.
         The last overload gave the following error.
-          Type 'Event<string>' is not assignable to type 'Unit<number>'.
-            Types of property '__' are incompatible.
-              Type 'string' is not assignable to type 'number'.
+          Type 'Event<number>' is not assignable to type '\\"incompatible unit in target\\"'.
       "
     `)
   })
@@ -95,10 +93,7 @@ describe('forward with subtyping', () => {
       "
       No overload matches this call.
         The last overload gave the following error.
-          Type 'Event<string | number>' is not assignable to type 'Unit<string>'.
-            Types of property '__' are incompatible.
-              Type 'string | number' is not assignable to type 'string'.
-                Type 'number' is not assignable to type 'string'.
+          Type 'Event<string>' is not assignable to type '\\"incompatible unit in target\\"'.
       "
     `)
   })
@@ -115,11 +110,13 @@ describe('forward with subtyping', () => {
     forward<string>({from: strOrNum, to: str})
     expect(typecheck).toMatchInlineSnapshot(`
       "
-      Type 'Event<string | number>' is not assignable to type 'Unit<string & {}>'.
-        Types of property '__' are incompatible.
-          Type 'string | number' is not assignable to type 'string & {}'.
-            Type 'number' is not assignable to type 'string & {}'.
-              Type 'number' is not assignable to type 'string'.
+      No overload matches this call.
+        The last overload gave the following error.
+          Type 'Event<string | number>' is not assignable to type 'Clock<string>'.
+            Type 'Event<string | number>' is not assignable to type 'Unit<string>'.
+              Types of property '__' are incompatible.
+                Type 'string | number' is not assignable to type 'string'.
+                  Type 'number' is not assignable to type 'string'.
       "
     `)
   })
@@ -136,8 +133,8 @@ describe('forward with subtyping', () => {
     forward<string, string | number>({to: str, from: strOrNum})
     expect(typecheck).toMatchInlineSnapshot(`
       "
-      Type 'string | number' does not satisfy the constraint 'string'.
-        Type 'number' is not assignable to type 'string'.
+      Type 'string | number' does not satisfy the constraint 'Clock<string>'.
+        Type 'string' is not assignable to type 'Clock<string>'.
       "
     `)
   })
@@ -188,18 +185,7 @@ describe('any to void support', () => {
 
     expect(typecheck).toMatchInlineSnapshot(`
       "
-      No overload matches this call.
-        The last overload gave the following error.
-          Type 'Event<string>' is not assignable to type 'Unit<void>'.
-            Types of property '__' are incompatible.
-              Type 'string' is not assignable to type 'void'.
-                Type 'Event<string>' is not assignable to type 'Unit<void>'.
-      No overload matches this call.
-        The last overload gave the following error.
-          Type 'Event<string>' is not assignable to type 'Unit<void>'.
-            Types of property '__' are incompatible.
-              Type 'string' is not assignable to type 'void'.
-                Type 'Event<string>' is not assignable to type 'Unit<void>'.
+      no errors
       "
     `)
   })
@@ -263,9 +249,7 @@ test('edge case #1 (should fail)', () => {
     "
     No overload matches this call.
       The last overload gave the following error.
-        Type 'Event<string>' is not assignable to type 'Unit<{ value: { value: string; }; }>'.
-          Types of property '__' are incompatible.
-            Type 'string' is not assignable to type '{ value: { value: string; }; }'.
+        Type 'Event<{ value: { value: string; }; }>' is not assignable to type '\\"incompatible unit in target\\"'.
     "
   `)
 })
@@ -300,9 +284,12 @@ describe('array support', () => {
           "
           No overload matches this call.
             The last overload gave the following error.
-              Type 'Event<number>' is not assignable to type 'Unit<string>'.
-                Types of property '__' are incompatible.
-                  Type 'number' is not assignable to type 'string'.
+              Type 'Event<string>' is not assignable to type '\\"incompatible unit in target\\"'.
+                Type 'Event<string>' is not assignable to type '\\"incompatible unit in target\\"'.
+          No overload matches this call.
+            The last overload gave the following error.
+              Type 'Event<string>' is not assignable to type '\\"incompatible unit in target\\"'.
+                Type 'Event<string>' is not assignable to type '\\"incompatible unit in target\\"'.
           "
         `)
       })
@@ -320,7 +307,7 @@ describe('array support', () => {
           "
           No overload matches this call.
             The last overload gave the following error.
-              Type 'Event<number>' is not assignable to type 'Unit<string>'.
+              Type 'Event<number>' is not assignable to type '\\"incompatible unit in target\\"'.
           "
         `)
       })
@@ -355,7 +342,7 @@ describe('array support', () => {
           "
           No overload matches this call.
             The last overload gave the following error.
-              Type 'Event<string>[]' is missing the following properties from type 'Unit<number>': kind, __
+              Type 'Event<number>' is not assignable to type '\\"incompatible unit in target\\"'.
           "
         `)
       })
@@ -372,7 +359,7 @@ describe('array support', () => {
           "
           No overload matches this call.
             The last overload gave the following error.
-              Type '(Event<string> | Event<number>)[]' is missing the following properties from type 'Unit<string>': kind, __
+              Type 'Event<string>' is not assignable to type '\\"incompatible unit in target\\"'.
           "
         `)
       })

@@ -251,6 +251,8 @@ test('#on triggers[] failing', () => {
           Type '(Store<string> | Event<number>)[]' is missing the following properties from type 'Unit<unknown>': kind, __
       Overload 2 of 2, '(triggers: Unit<string>[], reducer: (state: number, payload: string) => number | void): Store<number>', gave the following error.
         Type 'Event<number>' is not assignable to type 'Unit<string>'.
+          Types of property '__' are incompatible.
+            Type 'number' is not assignable to type 'string'.
     "
   `)
 })
