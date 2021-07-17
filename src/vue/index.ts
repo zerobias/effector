@@ -11,7 +11,9 @@ export const VueEffector = (
   options: Object,
 ) => {
   vue.mixin(effectorMixin)
+  /** @deprecated since v21.1.0 */
   vue.prototype.$watchAsStore = watchAsStore
+  /** @deprecated since v21.1.0 */
   vue.prototype.$store = store
 }
 
