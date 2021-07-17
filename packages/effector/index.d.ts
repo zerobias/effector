@@ -121,7 +121,7 @@ type EventAsReturnType<Payload> = any extends Payload ? Event<Payload> : never
 
 export interface Event<Payload> extends Unit<Payload> {
   (payload: Payload): Payload
-  (this: Payload extends void ? void : `Error: Expected 1 argument, but got 0`, payload?: Payload): void
+  (this: IfUnknown<Payload, void, Payload extends void ? void : `Error: Expected 1 argument, but got 0`>, payload?: Payload): void
   watch(watcher: (payload: Payload) => any): Subscription
   map<T>(fn: (payload: Payload) => T): EventAsReturnType<T>
   filter<T extends Payload>(config: {

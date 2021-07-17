@@ -2,8 +2,8 @@
 import {
   createEvent,
   Event,
-  /*::type*/ CompositeName,
-  /*::type*/ kind,
+  CompositeName,
+  kind,
 } from 'effector'
 
 const typecheck = '{global}'
@@ -128,6 +128,18 @@ describe('#prepend', () => {
       "
     `)
   })
+  test('infer optional unknown type', () => {
+    const event = createEvent<string>()
+    const prepended = event.prepend((arg?: unknown) => 'foo')
+    prepended()
+    prepended(1)
+    prepended('')
+    expect(typecheck).toMatchInlineSnapshot(`
+      "
+      no errors
+      "
+    `)
+  })
   test('argument type mismatch', () => {
     const event = createEvent<string>()
     const prepended = event.prepend((arg: number) => 'foo')
@@ -146,6 +158,7 @@ describe('#prepend', () => {
   test('void type mismatch', () => {
     const event = createEvent<string>()
     const prepended = event.prepend(() => 'foo')
+    //@ts-expect-error
     prepended('')
     expect(typecheck).toMatchInlineSnapshot(`
       "
@@ -181,28 +194,33 @@ describe('#prepend', () => {
   })
 })
 test('void function interop (should pass)', () => {
-  /*::
-  type unknown = any;
-  type never = any;
-  */
   const voidFn: () => void = createEvent<void>()
-  const voidFn1: () => void = createEvent</*:: typeof */ undefined>()
+  const voidFn1: () => void = createEvent<undefined>()
   const voidFn2: () => void = createEvent<any>()
   const voidFn3: () => void = createEvent<never>()
   const voidFn4: () => void = createEvent<unknown>()
-  const event = createEvent()
-  event()
-  const event1 = createEvent</*:: typeof */ undefined>()
-  event1()
-  const event2 = createEvent<any>()
-  event2()
   expect(typecheck).toMatchInlineSnapshot(`
     "
     no errors
     "
   `)
 })
-test('call event without params', () => {
+test('call event without params (should pass)', () => {
+  const event = createEvent()
+  event()
+  const event1 = createEvent<undefined>()
+  event1()
+  const event2 = createEvent<any>()
+  event2()
+  const event3 = createEvent<unknown>()
+  event3()
+  expect(typecheck).toMatchInlineSnapshot(`
+    "
+    no errors
+    "
+  `)
+})
+test('call event without params (should fail)', () => {
   const event = createEvent<number>()
   //@ts-expect-error
   event()
@@ -212,20 +230,7 @@ test('call event without params', () => {
     "
   `)
 })
-test('call event without params (unknown)', () => {
-  /*:: type unknown = any; */
-  // Expects 1 unknown argument
-  const event = createEvent<unknown>()
-  //@ts-expect-error
-  event()
-  expect(typecheck).toMatchInlineSnapshot(`
-    "
-    The 'this' context of type 'void' is not assignable to method's 'this' of type '\\"Error: Expected 1 argument, but got 0\\"'.
-    "
-  `)
-})
 test('call event without params (never)', () => {
-  /*:: type never = any; */
   // Should never be called
   const event = createEvent<never>()
   //@ts-expect-error
@@ -295,7 +300,6 @@ test('createEvent edge case', () => {
   `)
 })
 test('void function edge case (should fail)', () => {
-  /*:: type unknown = any; */
   // Typed event is assignable to a void function
   const voidFn: () => void = createEvent<number>()
   expect(typecheck).toMatchInlineSnapshot(`
